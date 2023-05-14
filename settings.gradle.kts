@@ -14,7 +14,11 @@ plugins {
 
 rootProject.name = "ktor-websocket-rest"
 
-include(":modules:shared")
-include(":modules:server")
-include(":modules:client")
+include(":shared")
+include(":server")
+include(":client")
 
+
+project(":shared").projectDir = File("modules/shared")
+project(":server").projectDir = File("modules/server")
+project(":client").projectDir = File("modules/client")

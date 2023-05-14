@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.8.10"
-    kotlin("plugin.serialization") version "1.8.10"
+    id("org.jetbrains.kotlin.jvm")
+    kotlin("plugin.serialization")
 }
 
 repositories {
@@ -8,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":modules:shared"))
+    implementation(project(":shared"))
 
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.1")
