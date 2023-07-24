@@ -13,10 +13,11 @@ plugins {
 }
 
 configure(subprojects) {
+    val subprojectName = name
+
     apply<JavaPlugin>()
     apply<MavenPublishPlugin>()
     apply<SigningPlugin>()
-
 
     configure<JavaPluginExtension> {
         withJavadocJar()
@@ -38,7 +39,7 @@ configure(subprojects) {
         publications {
             register<MavenPublication>("gpr") {
                 groupId = "net.grossmax.ktorwebsocketrest"
-                version = "0.0.4"
+                version = "0.0.6"
 
                 versionMapping {
                     allVariants {
@@ -49,8 +50,8 @@ configure(subprojects) {
                 from(components["java"])
 
                 pom {
-                    name.set("client")
-                    description.set("Client for ktor-websocket-rest")
+                    name.set(subprojectName)
+                    description.set("Module '${subprojectName}' for ktor-websocket-rest")
                     url.set("https://github.com/MaaxGr/ktor-websocket-rest")
                     licenses {
                         license {

@@ -1,9 +1,6 @@
 plugins {
-    // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.8.10"
-
-    // Apply the application plugin to add support for building a CLI application in Java.
-    application
+    id("org.jetbrains.kotlin.jvm")
+    kotlin("plugin.serialization")
 }
 
 repositories {
@@ -12,6 +9,8 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":shared"))
+
     // Use the Kotlin JUnit 5 integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 
@@ -19,7 +18,11 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.1")
 
     // This dependency is used by the application.
-    implementation("com.google.guava:guava:31.1-jre")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
+    implementation("io.ktor:ktor-server-core:2.3.0")
+    implementation("io.ktor:ktor-server-websockets:2.3.0")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.0")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -27,11 +30,6 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(11))
     }
-}
-
-application {
-    // Define the main class for the application.
-    mainClass.set("de.maaxgr.ktorwebsocketrest.AppKt")
 }
 
 tasks.named<Test>("test") {

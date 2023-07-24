@@ -14,19 +14,15 @@ import kotlinx.serialization.json.put
 import java.util.*
 
 suspend fun HttpClient.webSocketRPC(
-    host: String? = null,
-    port: Int? = null,
-    path: String? = null,
+    urlString: String,
     store: WebsocketHandlerStore,
     token: String,
     json: Json
 ) {
 
     webSocket(
-        method = HttpMethod.Get,
-        host = host,
-        port = port,
-        path = path) {
+        urlString = urlString
+    ) {
 
         try {
             sendSerialized(
